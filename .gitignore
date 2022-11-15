@@ -397,4 +397,5 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-Creds.cs
+Creds*
+aaPanelSharp/aaPanelSharp Test/Creds.cs
