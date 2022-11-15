@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using aaPanelSharp.ResponseModels;
 using Logging.Net;
 using Newtonsoft.Json;
 using RestSharp;
@@ -51,7 +51,7 @@ namespace aaPanelSharp
             if(response.IsSuccessful)
             {
                 //Logger.Debug(response.Content);
-                return JsonConvert.DeserializeObject<T>(response.Content);
+                return JsonConvert.DeserializeObject<T>(response.Content, new _CpuConverter());
             }
             else
             {
