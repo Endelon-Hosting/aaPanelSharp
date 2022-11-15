@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aaPanelSharp", "aaPanelSharp\aaPanelSharp.csproj", "{D70BF5FD-38BB-464E-B894-D9E5502BB22A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aaPanelSharp Test", "aaPanelSharp Test\aaPanelSharp Test.csproj", "{83E7687A-AC00-4038-9DE8-4ADE70F2394E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{D70BF5FD-38BB-464E-B894-D9E5502BB22A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D70BF5FD-38BB-464E-B894-D9E5502BB22A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D70BF5FD-38BB-464E-B894-D9E5502BB22A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83E7687A-AC00-4038-9DE8-4ADE70F2394E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83E7687A-AC00-4038-9DE8-4ADE70F2394E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83E7687A-AC00-4038-9DE8-4ADE70F2394E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83E7687A-AC00-4038-9DE8-4ADE70F2394E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
