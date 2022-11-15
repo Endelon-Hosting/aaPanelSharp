@@ -33,4 +33,15 @@ public class aaPanel
     {
         
     }
+
+    /// <summary>
+    /// initialize the aaPanel API client
+    /// </summary>
+    /// <param name="baseUrl">The url of the aaPanel</param>
+    /// <param name="apiKey">The API key of the aaPanel</param>
+    public aaPanel(string baseUrl, string apiKey)
+    {
+        BaseUrl = baseUrl;
+        ApiKey = apiKey;
+    }
 }
