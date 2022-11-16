@@ -14,6 +14,11 @@ public class SystemStatistics
         DatabasesCount = (int)@base.DatabaseTotal;
         WebsitesCount = (int)@base.SiteTotal;
         SystemUptime = @base.Time;
+        var memUsage = (float) @base.Mem.MemRealUsed / (float) @base.Mem.MemTotal;
+        RAMUsage = memUsage;
+        TotalRAM = (int) @base.Mem.MemTotal;
+        UsedRAM = (int) @base.Mem.MemRealUsed;
+        System = @base.System;
     }
     
     /// <summary>
@@ -40,4 +45,24 @@ public class SystemStatistics
     /// The uptime of the device running this aaPanel
     /// </summary>
     public string SystemUptime { get; }
+    
+    /// <summary>
+    /// The ram usage of the device running this aaPanel (0-1)
+    /// </summary>
+    public float RAMUsage { get; }
+    
+    /// <summary>
+    /// The total ram of the device running this aaPanel (in MB)
+    /// </summary>
+    public int TotalRAM { get; }
+    
+    /// <summary>
+    /// The used ram of the device running this aaPanel (in MB)
+    /// </summary>
+    public int UsedRAM { get; }
+    
+    /// <summary>
+    /// OS information and python version of the device running this aaPanel
+    /// </summary>
+    public string System { get; }
 }
