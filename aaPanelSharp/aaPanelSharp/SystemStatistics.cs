@@ -5,7 +5,7 @@ namespace aaPanelSharp;
 /// <summary>
 /// SystemStatistics represents the system statistics sent by the panel
 /// </summary>
-public class SystemStatistics
+public struct SystemStatistics
 {
     internal SystemStatistics(_SystemStatistics @base)
     {

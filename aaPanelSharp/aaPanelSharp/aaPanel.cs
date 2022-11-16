@@ -47,7 +47,7 @@ public class aaPanel
         ApiKey = apiKey;
     }
 
-    private string BuildUrl(string url)
+    internal string BuildUrl(string url)
     {
         return _baseUrl + "/" + url.TrimStart('/');
     }
@@ -62,6 +62,41 @@ public class aaPanel
             var result = aaPanelHelper.Post<_SystemStatistics>(BuildUrl("/system?action=GetNetWork"),
                 new Dictionary<string, string>() { }, ApiKey);
             return new SystemStatistics(result);
+        }
+    }
+
+    /// <summary>
+    /// The currently registered databases in the aaPanel (get => fetching data)
+    /// </summary>
+    public Database[] Databases
+    {
+        get
+        {
+            List<Database> result = new();
+
+            _DbList fetchPage(int page, out _DbList res)
+            {
+                res = aaPanelHelper.Post<_DbList>(BuildUrl("/data?action=getData"), new Dictionary<string, string>()
+                {
+                    {"table","databases"},
+                    {"search",""},
+                    {"limit", "100"},
+                    {"p", page.ToString()}
+                }, ApiKey);
+                return res;
+            }
+
+            _DbList temp;
+            int i = 1;
+            while (fetchPage(i++, out temp).Data.Length > 0)
+            {
+                foreach (var v in temp.Data)
+                {
+                    result.Add(new Database(v, this));
+                }
+            }
+            
+            return result.ToArray();
         }
     }
 
