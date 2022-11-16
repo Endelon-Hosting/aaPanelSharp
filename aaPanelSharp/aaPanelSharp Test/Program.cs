@@ -7,6 +7,5 @@ using aaPanelSharp_Test;
 Console.WriteLine("Hello, World!");
 
 aaPanel panel = new aaPanel(Creds.API_URL, Creds.API_KEY);
-var stats = panel.SystemStatistics;
 
 Debugger.Break();

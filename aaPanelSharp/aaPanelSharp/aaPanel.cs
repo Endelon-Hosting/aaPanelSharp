@@ -52,6 +52,9 @@ public class aaPanel
         return _baseUrl + "/" + url.TrimStart('/');
     }
 
+    /// <summary>
+    /// The current system statistics of the device and the aaPanel (get => fetching new system statistics)
+    /// </summary>
     public SystemStatistics SystemStatistics
     {
         get
@@ -60,5 +63,33 @@ public class aaPanel
                 new Dictionary<string, string>() { }, ApiKey);
             return new SystemStatistics(result);
         }
+    }
+
+    /// <summary>
+    /// Create a database in the aaPanel
+    /// </summary>
+    /// <param name="name">the name for the database</param>
+    /// <param name="username">the username for the database</param>
+    /// <param name="password">the password for the database</param>
+    /// <param name="type">the database type (default: MySQL)</param>
+    /// <returns>success of the action</returns>
+    public bool CreateDatabase(string name, string username, string password, string type = "MySQL")
+    {
+        var result = aaPanelHelper.Post<_DbCreate>(BuildUrl("/database?action=AddDatabase"),
+            new Dictionary<string, string>()
+            {
+                {"name", name},
+                {"codeing", "utf8"},
+                {"db_user", username},
+                {"password", password},
+                {"dtype", type},
+                {"dataAccess", "%"},
+                {"sid", "0"},
+                {"active", "false"},
+                {"address", "%"},
+                {"ps", name},
+                {"ssl", ""}
+            }, ApiKey);
+        return result.Status;
     }
 }
