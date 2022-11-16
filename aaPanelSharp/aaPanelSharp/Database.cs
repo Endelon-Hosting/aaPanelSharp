@@ -49,4 +49,18 @@ public struct Database
             {"name", Name}
         }, p.ApiKey).Status;
     }
+    
+    /// <summary>
+    /// change the password of this databse
+    /// </summary>
+    /// <returns>success of the action</returns>
+    public bool ChangePassword(string newPassword)
+    {
+        return aaPanelHelper.Post<_DbCreate>(p.BuildUrl("/database?action=ResDatabasePassword"), new Dictionary<string, string>()
+        {
+            {"id", Id.ToString()},
+            {"name", Name},
+            {"password", newPassword}
+        }, p.ApiKey).Status;
+    }
 }
