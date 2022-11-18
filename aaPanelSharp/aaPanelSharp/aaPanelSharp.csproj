@@ -4,6 +4,12 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Title>aaPanelSharp</Title>
+        <Authors>Endelon Hosting</Authors>
+        <Copyright>Copyright (C) 2022 Endelon Hosting</Copyright>
+        <Description> A C# library for the aaPanel</Description>
+        <PackageProjectUrl>https://github.com/Endelon-Hosting/aaPanelSharp</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/Endelon-Hosting/aaPanelSharp</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>
