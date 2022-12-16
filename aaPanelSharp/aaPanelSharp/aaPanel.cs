@@ -100,6 +100,39 @@ public class aaPanel
         }
     }
 
+    public Website[] Websites
+    {
+        get
+        {
+            List<Website> result = new List<Website>();
+            
+            _Site fetchPage(int page, out _Site res)
+            {
+                res = aaPanelHelper.Post<_Site>(BuildUrl("/data?action=getData"), new Dictionary<string, string>()
+                {
+                    {"table","sites"},
+                    {"search",""},
+                    {"limit", "100"},
+                    {"type","-1"},
+                    {"p", page.ToString()}
+                }, ApiKey);
+                return res;
+            }
+
+            _Site temp = new _Site();
+            int i = 1;
+            while (fetchPage(i++, out temp).Data.Length > 0)
+            {
+                foreach (var v in temp.Data)
+                {
+                    result.Add(new Website(v, this));
+                }
+            }
+            
+            return result.ToArray();
+        }
+    }
+
     /// <summary>
     /// Create a database in the aaPanel
     /// </summary>
