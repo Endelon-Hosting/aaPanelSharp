@@ -7,6 +7,7 @@ using aaPanelSharp_Test;
 Console.WriteLine("Hello, World!");
 
 aaPanel panel = new aaPanel(Creds.API_URL, Creds.API_KEY);
-var ws = panel.Websites;
+
+var phpvrs = panel.PHPVersions;
 
 Debugger.Break();

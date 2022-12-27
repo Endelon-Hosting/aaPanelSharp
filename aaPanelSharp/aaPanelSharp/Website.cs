@@ -9,7 +9,6 @@ public class Website
     {
         Added = d.Addtime;
         Backups = (int)d.BackupCount;
-        Domains = (int)d.Domain;
         Id = (int) d.Id;
         Name = d.Name;
         Path = d.Path;
@@ -21,11 +20,43 @@ public class Website
 
     public DateTimeOffset Added { get; set; }
     public int Backups { get; set; }
-    public int Domains { get; set; }
+
+    public Domain[] Domains
+    {
+        get
+        {
+            var domains = aaPanelHelper.Post<_Domain[]>(panel.BuildUrl("/data?action=getData"),
+                new Dictionary<string, string>()
+                {
+                    {"table","domain"},
+                    {"list","True"},
+                    {"search", Id.ToString()}
+                }, panel.ApiKey);
+
+            List<Domain> result = new List<Domain>();
+            foreach (var d in domains)
+            {
+                result.Add(new Domain(d, panel, this));
+            }
+
+            return result.ToArray();
+        }
+    }
+
     public int Id { get; set; }
     public string Name { get; set; }
     public string Path { get; set; }
     public string Status { get; set; }
     public string ProjectType { get; set; }
     public string PhpVersion { get; set; }
+
+    public bool AddDomain(string name, int port)
+    {
+        return aaPanelHelper.Post<_DbCreate>(panel.BuildUrl("/site?action=AddDomain"), new Dictionary<string, string>()
+        {
+            {"id", Id.ToString()},
+            {"webname", Name},
+            {"domain", name + ":" + port}
+        }, panel.ApiKey).Status;
+    }
 }

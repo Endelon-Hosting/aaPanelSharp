@@ -100,6 +100,24 @@ public class aaPanel
         }
     }
 
+    public PHPVersion[] PHPVersions
+    {
+        get
+        {
+            var vs = aaPanelHelper.Post<_PhpVersion[]>(BuildUrl("/site?action=GetPHPVersion"),
+                new Dictionary<string, string>(), ApiKey);
+
+            List<PHPVersion> result = new();
+            
+            foreach (var v in vs)
+            {
+                result.Add(new PHPVersion(v));
+            }
+
+            return result.ToArray();
+        }
+    }
+
     public Website[] Websites
     {
         get
