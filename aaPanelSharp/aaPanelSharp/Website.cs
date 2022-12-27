@@ -59,4 +59,25 @@ public class Website
             {"domain", name + ":" + port}
         }, panel.ApiKey).Status;
     }
+
+    public bool Delete()
+    {
+        return Delete(false, false, false);
+    }
+
+    public bool Delete(bool deleteFTP, bool deleteDatabase, bool deleteFiles)
+    {
+        var prs = new Dictionary<string, string>()
+        {
+            {"id", Id.ToString()},
+            {"webname", Name},
+        };
+        if (deleteFTP)
+            prs["ftp"] = "1";
+        if (deleteDatabase)
+            prs["database"] = "1";
+        if (deleteFiles)
+            prs["path"] = "1";
+        return aaPanelHelper.Post<_DbCreate>(panel.BuildUrl("/site?action=DeleteSite"), prs, panel.ApiKey).Status;
+    }
 }

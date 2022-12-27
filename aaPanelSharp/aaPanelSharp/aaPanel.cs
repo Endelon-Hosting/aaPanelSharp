@@ -1,4 +1,6 @@
-﻿using aaPanelSharp.ResponseModels;
+﻿using aaPanelSharp.RequestModels;
+using aaPanelSharp.ResponseModels;
+using Newtonsoft.Json;
 
 namespace aaPanelSharp;
 
@@ -177,5 +179,51 @@ public class aaPanel
                 {"ssl", ""}
             }, ApiKey);
         return result.Status;
+    }
+
+    public void CreateWebsite(string[] domains, PHPVersion phpVersion)
+    {
+        CreateWebsite(domains, phpVersion, "_auto");
+    }
+    public void CreateWebsite(string[] domains, PHPVersion phpVersion, string path)
+    {
+        string mDomain = domains[0];
+        int mPort = int.Parse(mDomain.Split(":").Last());
+        string mDomainNoPort = mDomain.Split(":").First();
+        string pth = path;
+        if (pth == "_auto")
+            pth = "/www/wwwroot/" + mDomainNoPort;
+        var dList = domains.ToList();
+        
+        dList.RemoveAt(0);
+        
+        var wn = new _Webname
+        {
+            Domain = mDomain,
+            Domainlist = dList.ToArray(),
+            Count = dList.Count
+        };
+
+        var webname = JsonConvert.SerializeObject(wn);
+
+        var vi = phpVersion.Version.ToString();
+        if (vi == "0")
+            vi = "00";
+        
+        var res = aaPanelHelper.Post<dynamic>(BuildUrl("/site?action=AddSite"), new Dictionary<string, string>()
+        {
+            {"webname",webname},
+            {"type","PHP"},
+            {"port",mPort.ToString()},
+            {"ps",mDomainNoPort.ToLower().Replace(".","_")},
+            {"path",pth},
+            {"type_id","0"},
+            {"version", vi},
+            {"ftp","false"},
+            {"sql","false"},
+            {"codeing","utf8"},
+            {"set_ssl","0"},
+            {"force_ssl","0"}
+        }, ApiKey);
     }
 }

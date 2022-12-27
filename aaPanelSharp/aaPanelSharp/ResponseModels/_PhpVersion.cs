@@ -2,7 +2,7 @@
 
 namespace aaPanelSharp.ResponseModels;
 
-public class _PhpVersion
+internal class _PhpVersion
 {
     [JsonProperty("version")]
     public string Version { get; set; }

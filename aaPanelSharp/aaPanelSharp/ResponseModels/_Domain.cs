@@ -2,7 +2,7 @@
 
 namespace aaPanelSharp.ResponseModels;
 
-public class _Domain
+internal class _Domain
 {
     [JsonProperty("id")]
     public long Id { get; set; }
