@@ -2,7 +2,7 @@
 
 namespace aaPanelSharp;
 
-public class Domain
+public struct Domain
 {
     private aaPanel panel;
     private Website site;

@@ -2,7 +2,7 @@
 
 namespace aaPanelSharp;
 
-public class PHPVersion
+public struct PHPVersion
 {
     internal PHPVersion(_PhpVersion v)
     {

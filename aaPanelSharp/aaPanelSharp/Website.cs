@@ -2,7 +2,7 @@
 
 namespace aaPanelSharp;
 
-public class Website
+public struct Website
 {
     internal aaPanel panel;
     internal Website(_SDatum d, aaPanel p)
