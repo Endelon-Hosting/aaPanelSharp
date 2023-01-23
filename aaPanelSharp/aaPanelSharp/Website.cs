@@ -80,4 +80,24 @@ public struct Website
             prs["path"] = "1";
         return aaPanelHelper.Post<_DbCreate>(panel.BuildUrl("/site?action=DeleteSite"), prs, panel.ApiKey).Status;
     }
+
+    public bool Disable()
+    {
+        var prs = new Dictionary<string, string>()
+        {
+            {"sites_id", Id.ToString()},
+            {"status", "0"},
+        };
+        return aaPanelHelper.Post<_DbCreate>(panel.BuildUrl("/site?action=set_site_status_multiple"), prs, panel.ApiKey).Status;
+    }
+
+    public bool Enable()
+    {
+        var prs = new Dictionary<string, string>()
+        {
+            {"sites_id", Id.ToString()},
+            {"status", "1"},
+        };
+        return aaPanelHelper.Post<_DbCreate>(panel.BuildUrl("/site?action=set_site_status_multiple"), prs, panel.ApiKey).Status;
+    }
 }
