@@ -185,6 +185,7 @@ public class aaPanel
     {
         CreateWebsite(domains, phpVersion, "_auto");
     }
+    
     public void CreateWebsite(string[] domains, PHPVersion phpVersion, string path)
     {
         string mDomain = domains[0];
@@ -224,6 +225,49 @@ public class aaPanel
             {"codeing","utf8"},
             {"set_ssl","0"},
             {"force_ssl","0"}
+        }, ApiKey);
+    }
+    public void CreateWebsite(string[] domains, PHPVersion phpVersion, string path, string ftpUser, string ftpPassword)
+    {
+        string mDomain = domains[0];
+        int mPort = int.Parse(mDomain.Split(":").Last());
+        string mDomainNoPort = mDomain.Split(":").First();
+        string pth = path;
+        if (pth == "_auto")
+            pth = "/www/wwwroot/" + mDomainNoPort;
+        var dList = domains.ToList();
+        
+        dList.RemoveAt(0);
+        
+        var wn = new _Webname
+        {
+            Domain = mDomain,
+            Domainlist = dList.ToArray(),
+            Count = dList.Count
+        };
+
+        var webname = JsonConvert.SerializeObject(wn);
+
+        var vi = phpVersion.Version.ToString();
+        if (vi == "0")
+            vi = "00";
+        
+        var res = aaPanelHelper.Post<dynamic>(BuildUrl("/site?action=AddSite"), new Dictionary<string, string>()
+        {
+            {"webname",webname},
+            {"type","PHP"},
+            {"port",mPort.ToString()},
+            {"ps",mDomainNoPort.ToLower().Replace(".","_")},
+            {"path",pth},
+            {"type_id","0"},
+            {"version", vi},
+            {"ftp","true"},
+            {"sql","false"},
+            {"codeing","utf8"},
+            {"set_ssl","0"},
+            {"force_ssl","0"},
+            {"ftp_username",ftpUser},
+            {"ftp_password",ftpPassword},
         }, ApiKey);
     }
 }
