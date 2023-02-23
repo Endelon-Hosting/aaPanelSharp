@@ -120,6 +120,8 @@ public class aaPanel
         }
     }
 
+    public MailServer MailServer => new MailServer(this);
+    
     public Website[] Websites
     {
         get
