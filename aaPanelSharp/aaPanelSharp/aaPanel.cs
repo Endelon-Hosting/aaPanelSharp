@@ -102,6 +102,9 @@ public class aaPanel
         }
     }
 
+    /// <summary>
+    /// getting the property fetches the in the aaPanel installed php versions
+    /// </summary>
     public PHPVersion[] PHPVersions
     {
         get
@@ -120,8 +123,14 @@ public class aaPanel
         }
     }
 
+    /// <summary>
+    /// the mailserver property is used to control the mailserver aaPanel plugin
+    /// </summary>
     public MailServer MailServer => new MailServer(this);
     
+    /// <summary>
+    /// getting the property fetches the in the aaPanel existing websites
+    /// </summary>
     public Website[] Websites
     {
         get
@@ -155,6 +164,9 @@ public class aaPanel
         }
     }
     
+    /// <summary>
+    /// getting the property fetches the in the aaPanel existing ftp profiles
+    /// </summary>
     public FTPUser[] FTPUsers
     {
         get
@@ -215,11 +227,22 @@ public class aaPanel
         return result.Status;
     }
 
+    /// <summary>
+    /// creates a new website in the aaPanel
+    /// </summary>
+    /// <param name="domains">the list of the domains this website uses</param>
+    /// <param name="phpVersion">the php version which the website uses</param>
     public void CreateWebsite(string[] domains, PHPVersion phpVersion)
     {
         CreateWebsite(domains, phpVersion, "_auto");
     }
     
+    /// <summary>
+    /// creates a new website in the aaPanel
+    /// </summary>
+    /// <param name="domains">the list of the domains this website uses</param>
+    /// <param name="phpVersion">the php version which the website uses</param>
+    /// <param name="path">the path to the wwwroot folder</param>
     public void CreateWebsite(string[] domains, PHPVersion phpVersion, string path)
     {
         string mDomain = domains[0];
@@ -261,6 +284,15 @@ public class aaPanel
             {"force_ssl","0"}
         }, ApiKey);
     }
+    
+    /// <summary>
+    /// creates a new website in the aaPanel
+    /// </summary>
+    /// <param name="domains">the list of the domains this website uses</param>
+    /// <param name="phpVersion">the php version which the website uses</param>
+    /// <param name="path">the path to the wwwroot folder</param>
+    /// <param name="ftpUser">the username for the ftp profile that will be created</param>
+    /// <param name="ftpPassword">the password for the ftp profile that will be created</param>
     public void CreateWebsite(string[] domains, PHPVersion phpVersion, string path, string ftpUser, string ftpPassword)
     {
         string mDomain = domains[0];

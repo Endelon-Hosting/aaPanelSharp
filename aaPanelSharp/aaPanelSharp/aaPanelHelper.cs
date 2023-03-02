@@ -8,7 +8,7 @@ using RestSharp;
 
 namespace aaPanelSharp
 {
-    public class aaPanelHelper
+    internal class aaPanelHelper
     {
         public static RestRequest AddAuthKeys(RestRequest request, string apiKey)
         {

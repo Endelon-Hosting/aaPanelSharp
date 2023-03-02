@@ -2,6 +2,9 @@
 
 namespace aaPanelSharp;
 
+/// <summary>
+/// the class implements the mailserver plugin
+/// </summary>
 public class MailServer
 {
     private aaPanel _panel;
@@ -10,6 +13,9 @@ public class MailServer
         _panel = panel;
     }
 
+    /// <summary>
+    /// the list of the domains that are registered in the mailserver
+    /// </summary>
     public List<MailServerDomain> Domains
     {
         get
