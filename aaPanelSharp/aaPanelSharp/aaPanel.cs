@@ -154,7 +154,39 @@ public class aaPanel
             return result.ToArray();
         }
     }
+    
+    public FTPUser[] FTPUsers
+    {
+        get
+        {
+            List<FTPUser> result = new List<FTPUser>();
+            
+            _FTP fetchPage(int page, out _FTP res)
+            {
+                res = aaPanelHelper.Post<_FTP>(BuildUrl("/data?action=getData"), new Dictionary<string, string>()
+                {
+                    {"table","ftps"},
+                    {"search",""},
+                    {"limit", "100"},
+                    {"p", page.ToString()}
+                }, ApiKey);
+                return res;
+            }
 
+            _FTP temp = new _FTP();
+            int i = 1;
+            while (fetchPage(i++, out temp).Data.Length > 0)
+            {
+                foreach (var v in temp.Data)
+                {
+                    result.Add(new FTPUser(v, this));
+                }
+            }
+            
+            return result.ToArray();
+        }
+    }
+    
     /// <summary>
     /// Create a database in the aaPanel
     /// </summary>
