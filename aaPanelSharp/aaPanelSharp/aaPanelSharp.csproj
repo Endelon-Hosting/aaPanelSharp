@@ -10,6 +10,7 @@
         <Description> A C# library for the aaPanel</Description>
         <PackageProjectUrl>https://github.com/Endelon-Hosting/aaPanelSharp</PackageProjectUrl>
         <RepositoryUrl>https://github.com/Endelon-Hosting/aaPanelSharp</RepositoryUrl>
+        <Version>1.0.1</Version>
     </PropertyGroup>
 
     <ItemGroup>
